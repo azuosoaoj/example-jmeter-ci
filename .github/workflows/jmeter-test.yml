@@ -1,0 +1,40 @@
+name: Run JMeter Test
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  jmeter:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout the repository
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      # Step 2: Set up JMeter
+      - name: Set up JMeter
+        run: |
+          sudo apt update
+          sudo apt install -y openjdk-11-jdk wget
+          wget https://downloads.apache.org/jmeter/binaries/apache-jmeter-5.4.3.tgz
+          tar -xvzf apache-jmeter-5.4.3.tgz
+          sudo mv apache-jmeter-5.4.3 /opt/jmeter
+          echo "/opt/jmeter/bin" >> $GITHUB_PATH
+
+      # Step 3: Run the JMeter test
+      - name: Run JMeter test
+        run: |
+          /opt/jmeter/bin/jmeter -n -t main.jmx -l result.jtl -e -o result
+
+      # Step 4: Upload the results (optional)
+      - name: Upload JMeter results
+        uses: actions/upload-artifact@v2
+        with:
+          name: jmeter-results
+          path: result
