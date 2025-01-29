@@ -7,17 +7,17 @@ on:
       num_users:
         description: 'Total number of virtual users to simulate in the test.'
         required: true
-        default: '1'
+        default: 1
 
       ramp_up:
         description: 'Time (in seconds) to gradually ramp up to the target number of users.'
         required: true
-        default: '60'
+        default: 60
 
       test_duration:
         description: 'Total duration (in seconds) for which the test will run.'
         required: true
-        default: '60'
+        default: 60
 jobs:
   Main:
     runs-on: ubuntu-latest
@@ -27,7 +27,7 @@ jobs:
         uses: QAInsights/PerfAction@v3.1
         with:
           test-plan-path: jmeter-files/test-plan.jmx
-          args: -Jusers=${{ github.event.inputs.num_users }} -Jramp_up=${{ github.event.inputs.ramp_up }} -Jtest_duration=${{ github.event.inputs.test_duration }}
+          args: "-Jusers=${{ github.event.inputs.num_users }} -Jramp_up=${{ github.event.inputs.ramp_up }} -Jtest_duration=${{ github.event.inputs.test_duration }}"
       - name: Upload Results
         uses: actions/upload-artifact@v3
         with:
