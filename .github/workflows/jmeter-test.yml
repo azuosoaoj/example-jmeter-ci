@@ -17,7 +17,7 @@ jobs:
         uses: QAInsights/PerfAction@v3.1
         with:
           test-plan-path: jmeter-files/test-plan.jmx
-          args: "Jusers=${{ github.event.inputs.num_users }}"
+          args: "-Jusers=${{ github.event.inputs.num_users }}"
       - name: Upload Results
         uses: actions/upload-artifact@v3
         with:
