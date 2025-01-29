@@ -7,17 +7,17 @@ on:
       num_users:
         description: 'Total number of virtual users to simulate in the test.'
         required: true
-        default: 1
+        default: '1'
 
       ramp_up:
         description: 'Time (in seconds) to gradually ramp up to the target number of users.'
         required: true
-        default: 60
+        default: '60'
 
       test_duration:
         description: 'Total duration (in seconds) for which the test will run.'
         required: true
-        default: 60
+        default: '60'
 jobs:
   Main:
     runs-on: ubuntu-latest
