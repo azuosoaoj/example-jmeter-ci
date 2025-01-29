@@ -7,7 +7,7 @@ on:
         num_users:
           description: 'Number of virtual users to simulate in the test'
           required: true
-          default: '1'  # Default to 10 users
+          default: '1'
 jobs:
   Main:
     runs-on: ubuntu-latest
