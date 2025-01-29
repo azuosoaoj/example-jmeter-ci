@@ -14,6 +14,9 @@ jobs:
           # Unzip the downloaded file
           unzip /tmp/jmeter-plugins/jpgc-casutg-2.9.zip -d /tmp/jmeter-plugins
           
+          ls -la
+          pwd
+
           # Copy files to the appropriate directories
           cp /tmp/jmeter-plugins/lib/jmeter-plugins-cmn-jmeter-0.6.jar /github/workspace/lib
           cp /tmp/jmeter-plugins/lib/ext/jmeter-plugins-casutg-2.9.jar /github/workspace/lib/ext
