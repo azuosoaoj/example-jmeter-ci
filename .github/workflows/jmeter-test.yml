@@ -1,38 +1,23 @@
-name: JMeter Test
-
-on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
-
+on: [push]
 jobs:
-  jmeter:
+  Main:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-
-      - name: Set up JDK
-        uses: actions/setup-java@v2
+      - uses: actions/checkout@v3
+      - name: Run JMeter Tests
+        uses: QAInsights/PerfAction@v3.1
         with:
-          java-version: '11'
-          distribution: 'adoptopenjdk'  # Use Eclipse Adoptium (formerly AdoptOpenJDK)
-
-      - name: Install JMeter
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y jmeter
-
-      - name: Run JMeter test
-        run: |
-          jmeter -n -t main.jmx -l result.jtl -e -o /tmp/jmeter-report
-
-      - name: Upload JMeter test results
-        uses: actions/upload-artifact@v3
+          test-plan-path: main.jmx
+          args: ''
+      - name: Upload Results
+        uses: actions/upload-artifact@v2
         with:
           name: jmeter-results
-          path: /tmp/jmeter-report
+          path: result.jtl
+      - name: Analyze Results with Latency Lingo
+        uses: latency-lingo/github-action@v0.0.2
+        with:
+          api-key: ${{ secrets.LATENCY_LINGO_API_KEY }}
+          file: result.jtl
+          label: Checkout Flow Automated Test Plan
+          format: jmeter
