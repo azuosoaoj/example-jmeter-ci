@@ -35,5 +35,5 @@ jobs:
         with:
           api-key: ${{ secrets.LATENCY_LINGO_API_KEY }}
           file: result.jtl
-          label: Checkout Flow Automated Test Plan
+          label: Purchase of an Airline Ticket
           format: jmeter
