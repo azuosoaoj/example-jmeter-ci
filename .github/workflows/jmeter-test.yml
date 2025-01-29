@@ -7,17 +7,10 @@ jobs:
       - name: Run JMeter Tests
         uses: QAInsights/PerfAction@v3.1
         with:
-          test-plan-path: main.jmx
+          test-plan-path: jmeter-files/main.jmx
           args: ''
       - name: Upload Results
         uses: actions/upload-artifact@v3
         with:
           name: jmeter-results
           path: result.jtl
-      - name: Analyze Results with Latency Lingo
-        uses: latency-lingo/github-action@v0.0.2
-        with:
-          api-key: ${{ secrets.LATENCY_LINGO_API_KEY }}
-          file: result.jtl
-          label: Checkout Flow Automated Test Plan
-          format: jmeter
