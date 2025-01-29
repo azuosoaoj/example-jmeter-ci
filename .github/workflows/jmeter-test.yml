@@ -15,9 +15,9 @@ jobs:
           unzip /tmp/jmeter-plugins/jpgc-casutg-2.9.zip -d /tmp/jmeter-plugins
           
           # Copy files to the appropriate directories
-          cp /tmp/jmeter-plugins/jpgc-casutg-2.9/lib/jmeter-plugins-cmn-jmeter-0.6.jar /github/workspace/lib
-          cp /tmp/jmeter-plugins/jpgc-casutg-2.9/ext/jmeter-plugins-casutg-2.9.jar /github/workspace/lib/ext
-          cp /tmp/jmeter-plugins/jpgc-casutg-2.9/ext/jmeter-plugins-manager-1.3.jar /github/workspace/lib/ext
+          cp /tmp/jmeter-plugins/lib/jmeter-plugins-cmn-jmeter-0.6.jar /github/workspace/lib
+          cp /tmp/jmeter-plugins/lib/ext/jmeter-plugins-casutg-2.9.jar /github/workspace/lib/ext
+          cp /tmp/jmeter-plugins/lib/ext/jmeter-plugins-manager-1.3.jar /github/workspace/lib/ext
           
           # Cleanup
           rm -rf /tmp/jmeter-plugins
