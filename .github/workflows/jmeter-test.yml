@@ -4,6 +4,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      - name: Install JMeter Plugins
+        run: |
+          mkdir -p /tmp/jmeter-plugins
+          wget https://jmeter-plugins.org/downloads/file/UltimateThreadGroup-1.9.0.jar -P /tmp/jmeter-plugins
+          cp /tmp/jmeter-plugins/UltimateThreadGroup-1.9.0.jar /github/workspace/lib/ext
       - name: Run JMeter Tests
         uses: QAInsights/PerfAction@v3.1
         with:
