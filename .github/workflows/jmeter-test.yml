@@ -4,16 +4,30 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Install JMeter Plugins
+
+      # Step to install the jpgc-casutg plugin
+      - name: Install jpgc-casutg Plugin
         run: |
           mkdir -p /tmp/jmeter-plugins
-          wget https://jmeter-plugins.org/downloads/file/UltimateThreadGroup-1.9.0.jar -P /tmp/jmeter-plugins
-          cp /tmp/jmeter-plugins/UltimateThreadGroup-1.9.0.jar /github/workspace/lib/ext
+          # Download the plugin zip
+          wget https://jmeter-plugins.org/files/packages/jpgc-casutg-2.9.zip -P /tmp/jmeter-plugins
+          # Unzip the downloaded file
+          unzip /tmp/jmeter-plugins/jpgc-casutg-2.9.zip -d /tmp/jmeter-plugins
+          
+          # Copy files to the appropriate directories
+          cp /tmp/jmeter-plugins/jpgc-casutg-2.9/lib/jmeter-plugins-cmn-jmeter-0.6.jar /github/workspace/lib
+          cp /tmp/jmeter-plugins/jpgc-casutg-2.9/ext/jmeter-plugins-casutg-2.9.jar /github/workspace/lib/ext
+          cp /tmp/jmeter-plugins/jpgc-casutg-2.9/ext/jmeter-plugins-manager-1.3.jar /github/workspace/lib/ext
+          
+          # Cleanup
+          rm -rf /tmp/jmeter-plugins
+
       - name: Run JMeter Tests
         uses: QAInsights/PerfAction@v3.1
         with:
           test-plan-path: ./jmeter-files/test-plan.jmx
           args: ""
+
       - name: Upload Results
         uses: actions/upload-artifact@v3
         with:
