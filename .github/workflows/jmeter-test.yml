@@ -23,7 +23,7 @@ jobs:
 
       - name: Download JMeter Plugin
         run: |
-          pwd
+          ls -la /opt/apache/apache-jmeter-5.5
       - name: Run JMeter Tests
         uses: QAInsights/PerfAction@v3.1
         with:
