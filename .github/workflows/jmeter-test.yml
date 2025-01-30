@@ -23,6 +23,7 @@ jobs:
 
       - name: Download JMeter Plugin
         run: |
+          ls -la /opt/apache/apache-jmeter-5.5
           curl -L -o /opt/apache/apache-jmeter-5.5/lib/ext/jmeter-plugins-casutg-2.10.jar https://jmeter-plugins-aws.s3.us-east-1.amazonaws.com/jmeter-plugins-casutg-2.10.jar
 
       - name: Run JMeter Tests
