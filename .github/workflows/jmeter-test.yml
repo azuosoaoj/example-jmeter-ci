@@ -29,3 +29,6 @@ jobs:
           file: result.jtl
           label: Purchase of an Airline Ticket
           format: jmeter
+          response-time-threshold: 2000  # Define o limite de tempo de resposta em ms
+          error-rate-threshold: 5       # Define o limite de taxa de erro em %
+          throughput-threshold: 100
