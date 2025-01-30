@@ -22,13 +22,13 @@ jobs:
           name: jmeter-results
           path: result.jtl
 
-      - name: Analyze Results with Latency Lingo
-        uses: latency-lingo/github-action@v0.0.2
-        with:
-          api-key: ${{ secrets.LATENCY_LINGO_API_KEY }}
-          file: result.jtl
-          label: Purchase of an Airline Ticket
-          format: jmeter
-          response-time-threshold: 2000  # Define o limite de tempo de resposta em ms
-          error-rate-threshold: 5       # Define o limite de taxa de erro em %
-          throughput-threshold: 100
+      - name: Analyze Results with Latency Lingo using API
+        run: |
+          curl -X POST "https://api.latencylingo.com/analyze" \
+              -H "Authorization: Bearer ${{ secrets.LATENCY_LINGO_API_KEY }}" \
+              -F "file=@result.jtl" \
+              -F "label=Test" \
+              -F "format=jmeter" \
+              -F "response_time_threshold=2000" \
+              -F "error_rate_threshold=5" \
+              -F "throughput_threshold=100"
