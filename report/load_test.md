@@ -29,3 +29,4 @@ Foi realizado um teste de carga no site [blazedemo.com](https://blazedemo.com/),
 - Em relação ao numero de requisições por segundo, está abaixo do esperado, acredito que a aplicação não suporte tal carga mantendo o tempo médio de resposta de forma aceitavel.
 
 [Relatório de execução](https://latencylingo.com/test-runs/c9496e02-64ce-47cf-ae65-41aeb2303825?version=3)
+![alt text](image.png)
