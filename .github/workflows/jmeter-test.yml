@@ -1,6 +1,6 @@
 on:
   workflow_dispatch:
-      inputs:
+    inputs:
       jmx_file:
         description: 'Name of the JMeter test file'
         required: true
@@ -15,7 +15,7 @@ jobs:
         uses: azuosoaoj/PerfAction@master
         with:
           test-plan-path: jmeter-files/${{ github.event.inputs.jmx_file }}
-          
+
       - name: Upload Results
         uses: actions/upload-artifact@v3
         with:
