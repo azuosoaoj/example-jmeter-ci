@@ -11,18 +11,11 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v3
 
-      - name: Download JMeter Plugin
-        run: |
-          mkdir -p jmeter-plugins
-          curl -L -o jmeter-plugins/jmeter-plugins-casutg-2.10.jar \
-          https://jmeter-plugins-aws.s3.us-east-1.amazonaws.com/jmeter-plugins-casutg-2.10.jar
-
       - name: Run JMeter Tests
         uses: azuosoaoj/PerfAction@master
         with:
-          test-plan-path: jmeter-files/test-plan.jmx
-          args: "-Jusers=${{ github.event.inputs.num_users }} -Jrampup=${{ github.event.inputs.ramp_up }} -Jduration=${{ github.event.inputs.test_duration }}"
-
+          test-plan-path: jmeter-files/${{ github.event.inputs.jmx_file }}
+          
       - name: Upload Results
         uses: actions/upload-artifact@v3
         with:
